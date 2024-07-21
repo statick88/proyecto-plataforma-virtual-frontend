@@ -13,6 +13,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class UserHeaderComponent implements OnInit {
   isProfileVisible = false;
+  isSearchVisible = false;
 
   constructor(
     private darkModeService: DarkModeService,
@@ -30,6 +31,12 @@ export class UserHeaderComponent implements OnInit {
         if (event.url === '/login') {
           this.isProfileVisible = false;
         }
+        if (event.url === '/profile') {
+          this.isProfileVisible = false;
+        }
+        if (event.url === '/register') {
+          this.isProfileVisible = false;
+        }
       }
     });
   }
@@ -45,5 +52,10 @@ export class UserHeaderComponent implements OnInit {
 
   toggleProfile() {
     this.isProfileVisible = !this.isProfileVisible;
+  }
+
+  toggleSearch() {
+    this.isSearchVisible = !this.isSearchVisible;
+    this.isProfileVisible = false;
   }
 }
