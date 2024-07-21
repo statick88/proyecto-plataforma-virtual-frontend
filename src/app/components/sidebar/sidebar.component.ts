@@ -1,10 +1,12 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { SidebarService } from '../../services/sidebar/sidebar.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
@@ -13,19 +15,26 @@ export class SidebarComponent implements OnInit {
   profileActive = false;
   searchActive = false;
 
-  constructor(private sidebarService: SidebarService) { }
+  constructor(
+    private sidebarService: SidebarService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { }
 
   ngOnInit(): void {
     this.sidebarService.sidebarState$.subscribe(isActive => {
       this.isActive = isActive;
-      document.body.classList.toggle('active', this.isActive);
+      if (isPlatformBrowser(this.platformId)) {
+        document.body.classList.toggle('active', this.isActive);
+      }
     });
   }
 
 
   closeSidebar() {
     this.isActive = false;
-    document.body.classList.remove('active');
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.classList.remove('active');
+    }
   }
 
   toggleProfile() {
@@ -42,7 +51,7 @@ export class SidebarComponent implements OnInit {
   onScroll() {
     this.profileActive = false;
     this.searchActive = false;
-    if (window.innerWidth < 1200) {
+    if (isPlatformBrowser(this.platformId) && window.innerWidth < 1200) {
       this.isActive = false;
       document.body.classList.remove('active');
     }

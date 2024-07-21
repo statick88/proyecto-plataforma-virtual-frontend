@@ -1,18 +1,11 @@
 import { Component } from '@angular/core';
-import { UserHeaderComponent } from '../user-header/user-header.component';
-import { SidebarComponent } from '../sidebar/sidebar.component';
-import { FooterComponent } from '../footer/footer.component';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [
-    UserHeaderComponent,
-    SidebarComponent,
-    FooterComponent,
-    RouterOutlet
-  ],
+  imports: [RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

@@ -220,6 +220,7 @@ section {
     width: 30rem;
 }
 
+
 .header .flex .profile.active {
     transform: scale(1);
 }

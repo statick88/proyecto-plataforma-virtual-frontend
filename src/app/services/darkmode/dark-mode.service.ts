@@ -4,19 +4,20 @@ import { isPlatformBrowser } from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
-
 export class DarkModeService {
   private toggleBtn: HTMLElement | null = null;
 
-  constructor() {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.initialize();
   }
 
   public initialize() {
-    this.toggleBtn = document.getElementById('toggle-btn');
-    const darkMode = localStorage.getItem('dark-mode');
-    if (darkMode === 'enabled') {
-      this.enableDarkMode();
+    if (isPlatformBrowser(this.platformId)) {
+      this.toggleBtn = document.getElementById('toggle-btn');
+      const darkMode = localStorage.getItem('dark-mode');
+      if (darkMode === 'enabled') {
+        this.enableDarkMode();
+      }
     }
   }
 
@@ -37,11 +38,13 @@ export class DarkModeService {
   }
 
   public toggleDarkMode() {
-    const darkMode = localStorage.getItem('dark-mode');
-    if (darkMode === 'disabled') {
-      this.enableDarkMode();
-    } else {
-      this.disableDarkMode();
+    if (isPlatformBrowser(this.platformId)) {
+      const darkMode = localStorage.getItem('dark-mode');
+      if (darkMode === 'disabled') {
+        this.enableDarkMode();
+      } else {
+        this.disableDarkMode();
+      }
     }
   }
 }
