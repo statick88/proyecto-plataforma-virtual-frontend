@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DarkModeService } from '../../services/darkmode/dark-mode.service';
 import { SidebarService } from '../../services/sidebar/sidebar.service';
-
+import { RouterLink } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-user-header',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './user-header.component.html',
   styleUrl: './user-header.component.css'
 })
@@ -16,11 +17,21 @@ export class UserHeaderComponent implements OnInit {
   constructor(
     private darkModeService: DarkModeService,
     private sidebarService: SidebarService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     //iniciailizar el dark mode
     this.darkModeService.initialize();
+
+    // Suscribirse a los eventos de navegación
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        if (event.url === '/login') {
+          this.isProfileVisible = false;
+        }
+      }
+    });
   }
 
   toggleDarkMode() {
