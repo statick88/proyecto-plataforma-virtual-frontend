@@ -2,7 +2,7 @@
     <section class="flex">
         <a routerLink="/home" class="logo">Educa.</a>
         <form action="search.html" method="post" class="search-form" [class.active]="isSearchVisible">
-            <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
+            <input type="text" name="search_box" required placeholder="buscar cursos..." maxlength="100">
             <button type="submit" class="fas fa-search"></button>
         </form>
         <div class="icons">
@@ -14,11 +14,11 @@
         <div class="profile" [class.active]="isProfileVisible">
             <img src="images/pic-1.jpg" class="image" alt="">
             <h3 class="name">shaikh anas</h3>
-            <p class="role">student</p>
-            <a routerLink="/profile" class="btn">view profile</a>
+            <p class="role">estudiante</p>
+            <a routerLink="/profile" class="btn">ver perfil</a>
             <div class="flex-btn">
-                <a routerLink="/login" class="option-btn">login</a>
-                <a routerLink="/register" class="option-btn">register</a>
+                <a routerLink="/login" class="option-btn">iniciar sesión</a>
+                <a routerLink="/register" class="option-btn">registrarse</a>
             </div>
         </div>
     </section>
