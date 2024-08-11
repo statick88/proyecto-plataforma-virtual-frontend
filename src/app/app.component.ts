@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { UserHeaderComponent } from './components/user-header/user-header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -11,7 +13,9 @@ import { FooterComponent } from './components/footer/footer.component';
     RouterOutlet,
     UserHeaderComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    FormsModule,
+    HttpClientModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
